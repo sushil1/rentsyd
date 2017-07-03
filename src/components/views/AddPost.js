@@ -138,7 +138,8 @@ class AddPost extends Component{
   render(){
     const {handleSubmit} = this.props
     return(
-      <form style={{paddingTop:'70px'}} onSubmit={handleSubmit(this.submitForm.bind(this))}>
+      <div className='container'>
+      <form style={{paddingTop:'70px'}}  onSubmit={handleSubmit(this.submitForm.bind(this))}>
 
         <FormSection name='address' required>
           <Field name='street' label='Street' element='input' type='text'
@@ -177,7 +178,7 @@ class AddPost extends Component{
         <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
       </form>
 
-
+    </div>
 
     )
 

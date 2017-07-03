@@ -21747,53 +21747,57 @@ var AddPost = function (_Component) {
       var handleSubmit = this.props.handleSubmit;
 
       return _react2.default.createElement(
-        'form',
-        { style: { paddingTop: '70px' }, onSubmit: handleSubmit(this.submitForm.bind(this)) },
+        'div',
+        { className: 'container' },
         _react2.default.createElement(
-          _reduxForm.FormSection,
-          { name: 'address', required: true },
-          _react2.default.createElement(_reduxForm.Field, { name: 'street', label: 'Street', element: 'input', type: 'text',
+          'form',
+          { style: { paddingTop: '70px' }, onSubmit: handleSubmit(this.submitForm.bind(this)) },
+          _react2.default.createElement(
+            _reduxForm.FormSection,
+            { name: 'address', required: true },
+            _react2.default.createElement(_reduxForm.Field, { name: 'street', label: 'Street', element: 'input', type: 'text',
+              component: this.renderInput
+            }),
+            _react2.default.createElement(_reduxForm.Field, { name: 'suburb', label: 'Suburb', element: 'input', type: 'text',
+              component: this.renderInput
+            }),
+            _react2.default.createElement(_reduxForm.Field, { name: 'postcode', label: 'Postcode', element: 'input', type: 'text',
+              component: this.renderInput
+            })
+          ),
+          _react2.default.createElement(_reduxForm.Field, { name: 'description', label: 'Write a description', element: 'textarea', type: 'text',
             component: this.renderInput
           }),
-          _react2.default.createElement(_reduxForm.Field, { name: 'suburb', label: 'Suburb', element: 'input', type: 'text',
+          _react2.default.createElement(_reduxForm.Field, { name: 'price', label: 'Price per week', element: 'input', type: 'text',
             component: this.renderInput
           }),
-          _react2.default.createElement(_reduxForm.Field, { name: 'postcode', label: 'Postcode', element: 'input', type: 'text',
+          _react2.default.createElement(_reduxForm.Field, { name: 'beds', label: 'Number of bedrooms', element: 'input', type: 'number', min: '1', max: '6',
             component: this.renderInput
-          })
-        ),
-        _react2.default.createElement(_reduxForm.Field, { name: 'description', label: 'Write a description', element: 'textarea', type: 'text',
-          component: this.renderInput
-        }),
-        _react2.default.createElement(_reduxForm.Field, { name: 'price', label: 'Price per week', element: 'input', type: 'text',
-          component: this.renderInput
-        }),
-        _react2.default.createElement(_reduxForm.Field, { name: 'beds', label: 'Number of bedrooms', element: 'input', type: 'number', min: '1', max: '6',
-          component: this.renderInput
-        }),
-        _react2.default.createElement(_reduxForm.Field, { name: 'bath', label: 'Number of bathrooms', element: 'input', type: 'number', min: '1', max: '5',
-          component: this.renderInput
-        }),
-        _react2.default.createElement(_reduxForm.Field, { name: 'carpark', label: 'Number of carpark', element: 'input', type: 'number', min: '0', max: '3',
-          component: this.renderInput
-        }),
-        _react2.default.createElement(_reduxForm.Field, { name: 'image', label: 'Upload a image',
-          component: this.renderDropzone
-        }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'button',
-          { className: 'btn btn-success', type: 'submit' },
-          this.state.status
-        ),
-        "  ",
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/' },
+          }),
+          _react2.default.createElement(_reduxForm.Field, { name: 'bath', label: 'Number of bathrooms', element: 'input', type: 'number', min: '1', max: '5',
+            component: this.renderInput
+          }),
+          _react2.default.createElement(_reduxForm.Field, { name: 'carpark', label: 'Number of carpark', element: 'input', type: 'number', min: '0', max: '3',
+            component: this.renderInput
+          }),
+          _react2.default.createElement(_reduxForm.Field, { name: 'image', label: 'Upload a image',
+            component: this.renderDropzone
+          }),
+          _react2.default.createElement('br', null),
           _react2.default.createElement(
             'button',
-            { className: 'btn btn-danger' },
-            'Cancel'
+            { className: 'btn btn-success', type: 'submit' },
+            this.state.status
+          ),
+          "  ",
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/' },
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-danger' },
+              'Cancel'
+            )
           )
         )
       );
