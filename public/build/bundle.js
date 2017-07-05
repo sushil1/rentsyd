@@ -21434,12 +21434,31 @@ var Post = function (_Component) {
               )
             ),
             _react2.default.createElement('hr', null),
-            _react2.default.createElement('span', { className: 'glyphicon glyphicon-bed' }),
-            " ",
-            list[key]['beds'],
-            " | ",
-            list[key]['bath'],
-            " baths"
+            _react2.default.createElement(
+              'div',
+              { className: 'btn-group' },
+              _react2.default.createElement(
+                'button',
+                { className: 'btn btn-default' },
+                _react2.default.createElement('i', { className: 'fa fa-bed fa-lg' }),
+                '\xA0',
+                list[key]['beds']
+              ),
+              _react2.default.createElement(
+                'button',
+                { className: 'btn btn-default' },
+                _react2.default.createElement('i', { className: 'fa fa-bath fa-lg' }),
+                '\xA0',
+                list[key]['bath']
+              ),
+              _react2.default.createElement(
+                'button',
+                { className: 'btn btn-default' },
+                _react2.default.createElement('i', { className: 'fa fa-car fa-lg' }),
+                '\xA0',
+                list[key]['carpark']
+              )
+            )
           ),
           _react2.default.createElement(
             'td',
@@ -21476,7 +21495,7 @@ var Post = function (_Component) {
               { type: 'button', className: 'btn btn-default' },
               _react2.default.createElement('span', { className: 'glyphicon glyphicon-th-list' }),
               " ",
-              'List'
+              'List All'
             ),
             _react2.default.createElement(
               'button',
@@ -22946,7 +22965,6 @@ exports.default = function () {
       });
       if (searchResult.length > 0) {
         var newCentre = searchResult[0]['geo'];
-        console.log('newCentre: ', newCentre);
         updated['currentLocation']['lat'] = newCentre[0];
         updated['currentLocation']['lng'] = newCentre[1];
         updated['zoom'] = 15;

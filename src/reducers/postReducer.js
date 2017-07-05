@@ -31,7 +31,6 @@ export default (state=initialState, action) => {
       })
       if(searchResult.length > 0){
         var newCentre = searchResult[0]['geo']
-        console.log('newCentre: ', newCentre)
         updated['currentLocation']['lat'] = newCentre[0]
         updated['currentLocation']['lng'] = newCentre[1]
         updated['zoom'] = 15

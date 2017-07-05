@@ -65,7 +65,20 @@ class Post extends Component{
                 </strong>
               </Link>
               <hr />
-              <span className='glyphicon glyphicon-bed'></span>{" "}{list[key]['beds']}{" | "}{list[key]['bath']}{" baths"}
+              <div className='btn-group'>
+                <button className='btn btn-default'>
+                  <i className='fa fa-bed fa-lg'></i>&nbsp;
+                  {list[key]['beds']}
+                </button>
+                <button className='btn btn-default'>
+                  <i className='fa fa-bath fa-lg'></i>&nbsp;
+                  {list[key]['bath']}
+                </button>
+                <button className='btn btn-default'>
+                  <i className='fa fa-car fa-lg'></i>&nbsp;
+                  {list[key]['carpark']}
+                </button>
+              </div>
             </td>
             <td>
               <div className='thumbnail'>
@@ -83,7 +96,7 @@ class Post extends Component{
       <div className='container' style={{paddingTop:'70px'}}>
         <div className='row' style={{paddingBottom:'20px'}}>
           <div className='btn-group' role='group'>
-            <button type="button" className="btn btn-default"><span className='glyphicon glyphicon-th-list'></span>{" "}List</button>
+            <button type="button" className="btn btn-default"><span className='glyphicon glyphicon-th-list'></span>{" "}List All</button>
             <button type="button" className={mapButton}  onClick={this.toggleMap.bind(this)}><span className='glyphicon glyphicon-globe'></span>{" "}Map</button>
             <button type='button' className='btn btn-default'> Results{" "}<span className='badge'>{resultsCount.length}</span></button>
           </div>
