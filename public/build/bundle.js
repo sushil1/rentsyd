@@ -22258,6 +22258,78 @@ var NavBar = function (_Component) {
     key: 'render',
     value: function render() {
       var currentuser = this.props.account.currentUser;
+
+      var displayUser = currentuser == null ? _react2.default.createElement(
+        'li',
+        { className: 'nav-item dropdown', role: 'presentation' },
+        _react2.default.createElement(
+          'a',
+          { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
+          _react2.default.createElement('i', { className: 'fa fa-user-o fa-2x' })
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'dropdown-menu' },
+          _react2.default.createElement(
+            'li',
+            { className: 'nav-item' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'SignUp'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { className: 'nav-item' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/login' },
+              'Login'
+            )
+          )
+        )
+      ) : _react2.default.createElement(
+        'li',
+        { className: 'nav-item dropdown', role: 'presentation' },
+        _react2.default.createElement(
+          'a',
+          { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
+          _react2.default.createElement('i', { className: 'fa fa-user-circle-o fa-2x' })
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'dropdown-menu' },
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'a',
+              null,
+              currentuser.name
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/post/new' },
+              'Add a Post'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'a',
+              { onClick: this.submitLogout.bind(this) },
+              'Logout'
+            )
+          )
+        )
+      );
+
       return (
 
         // <AppBar title='rentSyd'
@@ -22306,183 +22378,129 @@ var NavBar = function (_Component) {
         // </div>
         // </div>
         _react2.default.createElement(
-          'nav',
-          { className: 'navbar navbar-default navbar-fixed-top' },
+          'div',
+          { className: 'container' },
           _react2.default.createElement(
-            'div',
-            { className: 'container-fluid' },
+            'nav',
+            { className: 'navbar navbar-default navbar-fixed-top' },
             _react2.default.createElement(
               'div',
-              { className: 'navbar-header' },
+              { className: 'container-fluid' },
               _react2.default.createElement(
-                'button',
-                { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse-1', 'aria-expanded': 'false' },
+                'div',
+                { className: 'navbar-header' },
                 _react2.default.createElement(
-                  'span',
-                  { className: 'sr-only' },
-                  'Toggle navigation'
+                  'button',
+                  { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse-1', 'aria-expanded': 'false' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'sr-only' },
+                    'Toggle navigation'
+                  ),
+                  _react2.default.createElement('span', { className: 'icon-bar' }),
+                  _react2.default.createElement('span', { className: 'icon-bar' }),
+                  _react2.default.createElement('span', { className: 'icon-bar' })
                 ),
-                _react2.default.createElement('span', { className: 'icon-bar' }),
-                _react2.default.createElement('span', { className: 'icon-bar' }),
-                _react2.default.createElement('span', { className: 'icon-bar' })
-              ),
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: '/', className: 'navbar-brand' },
                 _react2.default.createElement(
-                  'strong',
-                  null,
-                  'rentSyd'
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'collapse navbar-collapse', id: 'navbar-collapse-1' },
-              _react2.default.createElement(
-                'ul',
-                { className: 'nav navbar-right' },
-                _react2.default.createElement(
-                  'li',
-                  { className: 'nav-item dropdown', role: 'presentation' },
-                  currentuser == null ? _react2.default.createElement(
-                    'div',
+                  _reactRouterDom.Link,
+                  { to: '/', className: 'navbar-brand' },
+                  _react2.default.createElement(
+                    'strong',
                     null,
-                    _react2.default.createElement(
-                      _reactRouterDom.Link,
-                      { className: 'navbar-text', to: '/signup' },
-                      'SignUp'
-                    ),
-                    " ",
-                    _react2.default.createElement(
-                      _reactRouterDom.Link,
-                      { className: 'navbar-text', to: '/login' },
-                      'Login'
-                    )
-                  ) : _react2.default.createElement(
-                    'div',
-                    { className: 'dropdown' },
-                    _react2.default.createElement(
-                      'a',
-                      { className: 'dropdown-toggle navbar-text', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
-                      currentuser.name,
-                      _react2.default.createElement('span', { className: 'caret' })
-                    ),
-                    _react2.default.createElement(
-                      'ul',
-                      { className: 'dropdown-menu' },
-                      _react2.default.createElement(
-                        'li',
-                        null,
-                        _react2.default.createElement(
-                          'a',
-                          null,
-                          'Profile'
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'li',
-                        null,
-                        _react2.default.createElement(
-                          'a',
-                          { onClick: this.submitLogout.bind(this) },
-                          'Logout'
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'li',
-                        null,
-                        _react2.default.createElement(
-                          _reactRouterDom.Link,
-                          { to: '/post/new' },
-                          'Add a Post'
-                        )
-                      )
-                    )
+                    'rentSyd'
                   )
                 )
               ),
               _react2.default.createElement(
-                'form',
-                { className: 'navbar-form form-inline navbar-left' },
+                'div',
+                { className: 'collapse navbar-collapse', id: 'navbar-collapse-1' },
                 _react2.default.createElement(
-                  'div',
-                  { className: 'form-group' },
-                  _react2.default.createElement('input', { onChange: this.updateField.bind(this), id: 'suburb', type: 'text', className: 'form-control', placeholder: 'Where' }),
+                  'ul',
+                  { className: 'nav navbar-right', style: { paddingRight: '30px' } },
+                  displayUser
+                ),
+                _react2.default.createElement(
+                  'form',
+                  { className: 'navbar-form form-inline navbar-left' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'btn-group', role: 'group' },
+                    { className: 'form-group' },
+                    _react2.default.createElement('input', { onChange: this.updateField.bind(this), id: 'suburb', type: 'text', className: 'form-control', placeholder: 'Where' }),
                     _react2.default.createElement(
                       'div',
-                      { className: 'col-sm-4' },
+                      { className: 'btn-group', role: 'group' },
                       _react2.default.createElement(
-                        'select',
-                        { id: 'beds', onChange: this.updateField.bind(this), className: 'form-control' },
+                        'div',
+                        { className: 'col-sm-4' },
                         _react2.default.createElement(
-                          'option',
-                          null,
-                          'Select Beds'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '1'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '2'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '3'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '4'
+                          'select',
+                          { id: 'beds', onChange: this.updateField.bind(this), className: 'form-control' },
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            'Select Beds'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '1'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '2'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '3'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '4'
+                          )
                         )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'col-sm-4' },
+                      ),
                       _react2.default.createElement(
-                        'select',
-                        { id: 'bath', onChange: this.updateField.bind(this), className: 'form-control' },
+                        'div',
+                        { className: 'col-sm-4' },
                         _react2.default.createElement(
-                          'option',
-                          null,
-                          'Select Bath'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '1'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '2'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '3'
-                        ),
-                        _react2.default.createElement(
-                          'option',
-                          null,
-                          '4'
+                          'select',
+                          { id: 'bath', onChange: this.updateField.bind(this), className: 'form-control' },
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            'Select Bath'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '1'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '2'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '3'
+                          ),
+                          _react2.default.createElement(
+                            'option',
+                            null,
+                            '4'
+                          )
                         )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { type: 'button', className: 'btn btn-default', onClick: this.searchSubmit.bind(this)
+                        },
+                        'Search'
                       )
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { type: 'button', className: 'btn btn-default', onClick: this.searchSubmit.bind(this)
-                      },
-                      'Search'
                     )
                   )
                 )
@@ -22621,47 +22639,48 @@ var PostDetail = function (_Component) {
           _react2.default.createElement(
             'h3',
             null,
-            post.address.street,
-            " ",
+            post.address.street
+          ),
+          _react2.default.createElement(
+            'h4',
+            null,
             post.address.suburb,
             " ",
             post.address.postcode
           ),
-          _react2.default.createElement('hr', null),
           _react2.default.createElement(
             'ul',
             { style: { textAlign: 'center' } },
             _react2.default.createElement(
               'li',
               { style: { display: 'inline-block' } },
-              'Beds:',
+              _react2.default.createElement('i', { className: 'fa fa-bed fa-2x fa-fw' }),
+              '\xA0',
               post.beds
             ),
             _react2.default.createElement(
               'li',
               { style: { display: 'inline-block', margin: '0 70px' } },
-              'Bath:',
+              _react2.default.createElement('i', { className: 'fa fa-bath fa-2x fa-fw' }),
+              '\xA0',
               post.bath
             ),
             _react2.default.createElement(
               'li',
               { style: { display: 'inline-block' } },
-              'Parking:',
-              post.park
+              _react2.default.createElement('i', { className: 'fa fa-car fa-2x fa-fw' }),
+              '\xA0',
+              post.carpark
             )
           ),
           _react2.default.createElement('hr', null)
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'panel' },
-          _react2.default.createElement(
-            'h4',
-            { style: { textAlign: 'center' } },
-            $,
-            post.price,
-            " AUD per week"
-          )
+          'h4',
+          { style: { textAlign: 'center' } },
+          '$',
+          post.price,
+          " per week"
         ),
         _react2.default.createElement(
           'p',

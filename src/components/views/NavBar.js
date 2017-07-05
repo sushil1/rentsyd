@@ -63,6 +63,32 @@ class NavBar extends Component{
 
   render(){
     const currentuser = this.props.account.currentUser
+
+    const displayUser = (currentuser == null)? (
+      <li className='nav-item dropdown' role='presentation'>
+        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-o fa-2x'></i></a>
+        <ul className='dropdown-menu'>
+          <li className='nav-item'><Link to='/signup'>SignUp</Link></li>
+          <li className='nav-item'><Link to='/login'>Login</Link></li>
+          </ul>
+      </li>
+      )
+       :
+      (
+      <li className='nav-item dropdown' role='presentation'>
+        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle-o fa-2x'></i></a>
+        <ul className='dropdown-menu'>
+          <li><a>{currentuser.name}</a></li>
+          <li>
+            <Link to='/post/new'>Add a Post</Link>
+          </li>
+          <li>
+            <a onClick={this.submitLogout.bind(this)}>Logout</a>
+          </li>
+        </ul>
+      </li>
+      )
+
     return(
 
       // <AppBar title='rentSyd'
@@ -110,7 +136,8 @@ class NavBar extends Component{
       // </div>
       // </div>
       // </div>
-    <nav className='navbar navbar-default navbar-fixed-top' >
+    <div className='container'>
+      <nav className='navbar navbar-default navbar-fixed-top' >
         <div className='container-fluid'>
           <div className='navbar-header'>
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
@@ -124,33 +151,8 @@ class NavBar extends Component{
 
             <div className="collapse navbar-collapse" id="navbar-collapse-1">
 
-            <ul className='nav navbar-right'>
-              <li className="nav-item dropdown" role="presentation" >
-                {(currentuser == null)?
-                (
-                  <div>
-                    <Link className='navbar-text' to='/signup'>SignUp</Link>
-                    {" "}
-                    <Link className='navbar-text' to='/login'>Login</Link>
-                </div>
-                )
-                :
-                (
-                  <div className='dropdown'>
-                      <a className="dropdown-toggle navbar-text" data-toggle='dropdown' style={{textDecoration:'none'}}>{currentuser.name}<span className='caret'></span></a>
-                      <ul className='dropdown-menu'>
-                        <li><a>Profile</a></li>
-                        <li>
-                          <a onClick={this.submitLogout.bind(this)}>Logout</a>
-                        </li>
-                        <li>
-                          <Link to='/post/new'>Add a Post</Link>
-                        </li>
-                      </ul>
-                  </div>
-                )}
-              </li>
-
+            <ul className='nav navbar-right' style={{paddingRight:'30px'}}>
+                  {displayUser}
             </ul>
 
             <form className="navbar-form form-inline navbar-left">
@@ -188,7 +190,7 @@ class NavBar extends Component{
 
         </div>
       </nav>
-
+    </div>
     )
   }
 }

@@ -41,18 +41,16 @@ class PostDetail extends Component{
           transitionEnter={false}
           transitionLeave={false}
           >
-          <h3>{post.address.street}{" "}{post.address.suburb}{" "}{post.address.postcode}</h3>
-        <hr />
+          <h3>{post.address.street}</h3>
+          <h4>{post.address.suburb}{" "}{post.address.postcode}</h4>
         <ul style={{textAlign:'center'}}>
-            <li style={{display:'inline-block'}}>Beds:{post.beds}</li>
-            <li style={{display:'inline-block', margin:'0 70px'}}>Bath:{post.bath}</li>
-            <li style={{display:'inline-block'}}>Parking:{post.park}</li>
+            <li style={{display:'inline-block'}}><i className='fa fa-bed fa-2x fa-fw'></i>&nbsp;{post.beds}</li>
+            <li style={{display:'inline-block', margin:'0 70px'}}><i className='fa fa-bath fa-2x fa-fw'></i>&nbsp;{post.bath}</li>
+            <li style={{display:'inline-block'}}><i className='fa fa-car fa-2x fa-fw'></i>&nbsp;{post.carpark}</li>
         </ul>
         <hr />
         </CSSTransitionGroup>
-        <div className='panel'>
-          <h4 style={{textAlign:'center'}}>{$}{post.price}{" AUD per week"}</h4>
-        </div>
+          <h4 style={{textAlign:'center'}}>${post.price}{" per week"}</h4>
 
         <p className='well' style={{textAlign:'center'}}>{post.description}</p>
       </div>
