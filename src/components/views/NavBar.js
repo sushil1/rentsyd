@@ -156,21 +156,27 @@ class NavBar extends Component{
             </ul>
 
             <form className="navbar-form form-inline navbar-left">
-              <div className="form-group">
-              <input onChange={this.updateField.bind(this)} id='suburb' type="text" className="form-control"  placeholder="Where"/>
-              <div className='btn-group' role='group'>
-              <div className='col-sm-4'>
+
+              <div className="input-group">
+                <span className="input-group-addon"><i className="fa fa-map-marker fa-fw"></i></span>
+                <input id='suburb' className="form-control" onChange={this.updateField.bind(this)} type="text" placeholder="Suburb"/>
+              </div>
+
+              <div className="input-group margin-left-sm">
+                <span className="input-group-addon"><i className="fa fa-bed fa-fw"></i></span>
                 <select id='beds' onChange={this.updateField.bind(this)} className="form-control">
-                  <option>Select Beds</option>
+                  <option>Beds</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
                 </select>
               </div>
-              <div className='col-sm-4'>
+
+              <div className="input-group margin-left-sm">
+                <span className="input-group-addon"><i className="fa fa-bath fa-fw"></i></span>
                 <select id='bath' onChange={this.updateField.bind(this)} className="form-control">
-                  <option>Select Bath</option>
+                  <option>Bath</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -178,12 +184,13 @@ class NavBar extends Component{
                 </select>
               </div>
 
-              <div type='button'className='btn btn-default' onClick={this.searchSubmit.bind(this)}
-              >Search</div>
 
-
+              <div className="input-group margin-left-sm">
+                <button className='btn btn-default'   onClick={this.searchSubmit.bind(this)}>
+                  Search
+                </button>
               </div>
-            </div>
+
             </form>
 
             </div>

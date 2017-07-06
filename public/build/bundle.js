@@ -22428,83 +22428,97 @@ var NavBar = function (_Component) {
                   { className: 'navbar-form form-inline navbar-left' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'form-group' },
-                    _react2.default.createElement('input', { onChange: this.updateField.bind(this), id: 'suburb', type: 'text', className: 'form-control', placeholder: 'Where' }),
+                    { className: 'input-group' },
                     _react2.default.createElement(
-                      'div',
-                      { className: 'btn-group', role: 'group' },
+                      'span',
+                      { className: 'input-group-addon' },
+                      _react2.default.createElement('i', { className: 'fa fa-map-marker fa-fw' })
+                    ),
+                    _react2.default.createElement('input', { id: 'suburb', className: 'form-control', onChange: this.updateField.bind(this), type: 'text', placeholder: 'Suburb' })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group margin-left-sm' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon' },
+                      _react2.default.createElement('i', { className: 'fa fa-bed fa-fw' })
+                    ),
+                    _react2.default.createElement(
+                      'select',
+                      { id: 'beds', onChange: this.updateField.bind(this), className: 'form-control' },
                       _react2.default.createElement(
-                        'div',
-                        { className: 'col-sm-4' },
-                        _react2.default.createElement(
-                          'select',
-                          { id: 'beds', onChange: this.updateField.bind(this), className: 'form-control' },
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            'Select Beds'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '1'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '2'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '3'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '4'
-                          )
-                        )
+                        'option',
+                        null,
+                        'Beds'
                       ),
                       _react2.default.createElement(
-                        'div',
-                        { className: 'col-sm-4' },
-                        _react2.default.createElement(
-                          'select',
-                          { id: 'bath', onChange: this.updateField.bind(this), className: 'form-control' },
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            'Select Bath'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '1'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '2'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '3'
-                          ),
-                          _react2.default.createElement(
-                            'option',
-                            null,
-                            '4'
-                          )
-                        )
+                        'option',
+                        null,
+                        '1'
                       ),
                       _react2.default.createElement(
-                        'div',
-                        { type: 'button', className: 'btn btn-default', onClick: this.searchSubmit.bind(this)
-                        },
-                        'Search'
+                        'option',
+                        null,
+                        '2'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '3'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '4'
                       )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group margin-left-sm' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon' },
+                      _react2.default.createElement('i', { className: 'fa fa-bath fa-fw' })
+                    ),
+                    _react2.default.createElement(
+                      'select',
+                      { id: 'bath', onChange: this.updateField.bind(this), className: 'form-control' },
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        'Bath'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '1'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '2'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '3'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        null,
+                        '4'
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group margin-left-sm' },
+                    _react2.default.createElement(
+                      'button',
+                      { className: 'btn btn-default', onClick: this.searchSubmit.bind(this) },
+                      'Search'
                     )
                   )
                 )
