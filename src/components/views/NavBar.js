@@ -66,7 +66,7 @@ class NavBar extends Component{
 
     const displayUser = (currentuser == null)? (
       <li className='nav-item dropdown' role='presentation'>
-        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-o fa-2x'></i></a>
+        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle-o fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
           <li className='nav-item'><Link to='/signup'>SignUp</Link></li>
           <li className='nav-item'><Link to='/login'>Login</Link></li>
@@ -76,7 +76,7 @@ class NavBar extends Component{
        :
       (
       <li className='nav-item dropdown' role='presentation'>
-        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle-o fa-2x'></i></a>
+        <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
           <li><a>{currentuser.name}</a></li>
           <li>

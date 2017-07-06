@@ -22265,7 +22265,9 @@ var NavBar = function (_Component) {
         _react2.default.createElement(
           'a',
           { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
-          _react2.default.createElement('i', { className: 'fa fa-user-o fa-2x' })
+          _react2.default.createElement('i', { className: 'fa fa-user-circle-o fa-2x' }),
+          '\xA0',
+          _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
         ),
         _react2.default.createElement(
           'ul',
@@ -22295,7 +22297,9 @@ var NavBar = function (_Component) {
         _react2.default.createElement(
           'a',
           { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
-          _react2.default.createElement('i', { className: 'fa fa-user-circle-o fa-2x' })
+          _react2.default.createElement('i', { className: 'fa fa-user-circle fa-2x' }),
+          '\xA0',
+          _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
         ),
         _react2.default.createElement(
           'ul',
