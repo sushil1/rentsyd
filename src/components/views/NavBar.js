@@ -136,9 +136,9 @@ class NavBar extends Component{
       // </div>
       // </div>
       // </div>
-    <div className='container'>
+    <div>
       <nav className='navbar navbar-default navbar-fixed-top' >
-        <div className='container-fluid'>
+        <div className='container'>
           <div className='navbar-header'>
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
               <span className="sr-only">Toggle navigation</span>
@@ -185,7 +185,7 @@ class NavBar extends Component{
               </div>
 
 
-              <div className="input-group margin-left-sm">
+              <div className="input-group ">
                 <button className='btn btn-default'   onClick={this.searchSubmit.bind(this)}>
                   Search
                 </button>

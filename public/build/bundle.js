@@ -21402,7 +21402,7 @@ var Post = function (_Component) {
     value: function render() {
       var list = this.props.post.list;
       var mapStatus = this.state.showMap ? null : 'hidden';
-      var postToggle = this.state.showMap ? 'col-md-7' : 'col-md-10';
+      var postToggle = this.state.showMap ? 'col-md-7' : 'col-md-8 col-offset-2';
       var mapButton = this.state.showMap ? 'btn btn-success' : 'btn btn-warning';
       var resultsCount = Object.keys(list);
       var displayList = Object.keys(list).map(function (key, val) {
@@ -21486,34 +21486,32 @@ var Post = function (_Component) {
         { className: 'container', style: { paddingTop: '70px' } },
         _react2.default.createElement(
           'div',
-          { className: 'row', style: { paddingBottom: '20px' } },
+          { className: 'row hidden-sm hidden-xs', style: { marginBottom: '0px' } },
           _react2.default.createElement(
             'div',
-            { className: 'btn-group', role: 'group' },
-            _react2.default.createElement(
-              'button',
-              { type: 'button', className: 'btn btn-default' },
-              _react2.default.createElement('span', { className: 'glyphicon glyphicon-th-list' }),
-              " ",
-              'List All'
-            ),
+            { className: 'btn-group col-md-6 col-offset-3', role: 'group' },
             _react2.default.createElement(
               'button',
               { type: 'button', className: mapButton, onClick: this.toggleMap.bind(this) },
               _react2.default.createElement('span', { className: 'glyphicon glyphicon-globe' }),
-              " ",
-              'Map'
+              '\xA0',
+              this.state.showMap ? 'Hide Map' : 'Show Map'
             ),
             _react2.default.createElement(
               'button',
               { type: 'button', className: 'btn btn-default' },
-              ' Results',
-              " ",
+              ' Results\xA0',
               _react2.default.createElement(
                 'span',
                 { className: 'badge' },
                 resultsCount.length
               )
+            ),
+            _react2.default.createElement(
+              'button',
+              { type: 'button', className: 'btn btn-default disabled' },
+              ' Sort\xA0',
+              _react2.default.createElement('span', { className: 'fa fa-sort' })
             )
           )
         ),
@@ -21539,8 +21537,7 @@ var Post = function (_Component) {
             { className: mapStatus },
             _react2.default.createElement(
               'div',
-              { id: 'mapscrool', className: 'col-md-5 hidden-sm hidden-xs', 'data-spy': 'affix', 'data-offset-top': '100', 'data-offset-bottom': '20'
-              },
+              { id: 'mapscrool', className: 'col-md-5 hidden-sm hidden-xs', 'data-spy': 'affix', 'data-offset-top': '90', 'data-offset-bottom': '10' },
               _react2.default.createElement(_MapNavigation2.default, null)
             )
           )
@@ -22383,13 +22380,13 @@ var NavBar = function (_Component) {
         // </div>
         _react2.default.createElement(
           'div',
-          { className: 'container' },
+          null,
           _react2.default.createElement(
             'nav',
             { className: 'navbar navbar-default navbar-fixed-top' },
             _react2.default.createElement(
               'div',
-              { className: 'container-fluid' },
+              { className: 'container' },
               _react2.default.createElement(
                 'div',
                 { className: 'navbar-header' },
@@ -22514,7 +22511,7 @@ var NavBar = function (_Component) {
                   ),
                   _react2.default.createElement(
                     'div',
-                    { className: 'input-group margin-left-sm' },
+                    { className: 'input-group ' },
                     _react2.default.createElement(
                       'button',
                       { className: 'btn btn-default', onClick: this.searchSubmit.bind(this) },
@@ -22637,13 +22634,25 @@ var PostDetail = function (_Component) {
       return _react2.default.createElement(
         'div',
         { style: { paddingTop: '100px' }, className: 'container' },
-        _react2.default.createElement(
+        this.props.account.currentUser !== null && post.profile.id === this.props.account.currentUser.id && _react2.default.createElement(
           'button',
           {
             className: 'btn btn-danger pull-right',
             onClick: this.onDelete.bind(this),
             style: { marginLeft: '30px' } },
           'Delete'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          post.address.street
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
+          post.address.suburb,
+          " ",
+          post.address.postcode
         ),
         _react2.default.createElement(
           _reactTransitionGroup.CSSTransitionGroup,
@@ -22654,18 +22663,6 @@ var PostDetail = function (_Component) {
             transitionEnter: false,
             transitionLeave: false
           },
-          _react2.default.createElement(
-            'h3',
-            null,
-            post.address.street
-          ),
-          _react2.default.createElement(
-            'h4',
-            null,
-            post.address.suburb,
-            " ",
-            post.address.postcode
-          ),
           _react2.default.createElement(
             'ul',
             { style: { textAlign: 'center' } },
@@ -22690,9 +22687,9 @@ var PostDetail = function (_Component) {
               '\xA0',
               post.carpark
             )
-          ),
-          _react2.default.createElement('hr', null)
+          )
         ),
+        _react2.default.createElement('hr', null),
         _react2.default.createElement(
           'h4',
           { style: { textAlign: 'center' } },
@@ -22714,7 +22711,8 @@ var PostDetail = function (_Component) {
 
 var stateToProps = function stateToProps(state, ownProps) {
   return {
-    post: state.post.list[ownProps.match.params.id]
+    post: state.post.list[ownProps.match.params.id],
+    account: state.account
   };
 };
 

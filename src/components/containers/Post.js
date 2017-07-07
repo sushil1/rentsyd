@@ -47,7 +47,7 @@ class Post extends Component{
   render(){
     const list = this.props.post.list
     const mapStatus = (this.state.showMap)? null : 'hidden'
-    const postToggle = (this.state.showMap)? 'col-md-7': 'col-md-10'
+    const postToggle = (this.state.showMap)? 'col-md-7': 'col-md-8 col-offset-2'
     const mapButton = (this.state.showMap)? 'btn btn-success' : 'btn btn-warning'
     const resultsCount = Object.keys(list)
     const displayList = Object.keys(list).map((key, val) =>{
@@ -94,11 +94,12 @@ class Post extends Component{
 
     return(
       <div className='container' style={{paddingTop:'70px'}}>
-        <div className='row' style={{paddingBottom:'20px'}}>
-          <div className='btn-group' role='group'>
-            <button type="button" className="btn btn-default"><span className='glyphicon glyphicon-th-list'></span>{" "}List All</button>
-            <button type="button" className={mapButton}  onClick={this.toggleMap.bind(this)}><span className='glyphicon glyphicon-globe'></span>{" "}Map</button>
-            <button type='button' className='btn btn-default'> Results{" "}<span className='badge'>{resultsCount.length}</span></button>
+        <div className='row hidden-sm hidden-xs' style={{marginBottom:'0px'}}>
+          <div className='btn-group col-md-6 col-offset-3' role='group'>
+            <button type="button" className={mapButton}  onClick={this.toggleMap.bind(this)}><span className='glyphicon glyphicon-globe'></span>&nbsp;{(this.state.showMap)? 'Hide Map': 'Show Map'}</button>
+            <button type='button' className='btn btn-default'> Results&nbsp;<span className='badge'>{resultsCount.length}</span></button>
+            <button type='button' className='btn btn-default disabled'> Sort&nbsp;<span className='fa fa-sort'></span>
+            </button>
           </div>
         </div>
         <div className='row'>
@@ -113,8 +114,7 @@ class Post extends Component{
           </table>
           </div>
           <div className={mapStatus}>
-            <div id='mapscrool' className='col-md-5 hidden-sm hidden-xs' data-spy='affix' data-offset-top='100' data-offset-bottom='20'
-            >
+            <div id='mapscrool' className='col-md-5 hidden-sm hidden-xs' data-spy='affix' data-offset-top='90' data-offset-bottom='10'>
                 <MapNavigation />
             </div>
           </div>

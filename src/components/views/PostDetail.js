@@ -30,26 +30,29 @@ class PostDetail extends Component{
 
     return(
       <div style={{paddingTop: '100px'}} className='container'>
+      {(this.props.account.currentUser !== null)&&(post.profile.id === this.props.account.currentUser.id) &&
         <button
           className='btn btn-danger pull-right'
           onClick={this.onDelete.bind(this)}
           style={{marginLeft:'30px'}}>Delete</button>
-        <CSSTransitionGroup
-          transitionName ='fade'
-          transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionEnter={false}
-          transitionLeave={false}
-          >
+      }
+
           <h3>{post.address.street}</h3>
           <h4>{post.address.suburb}{" "}{post.address.postcode}</h4>
+          <CSSTransitionGroup
+            transitionName ='fade'
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnter={false}
+            transitionLeave={false}
+            >
         <ul style={{textAlign:'center'}}>
             <li style={{display:'inline-block'}}><i className='fa fa-bed fa-2x fa-fw'></i>&nbsp;{post.beds}</li>
             <li style={{display:'inline-block', margin:'0 70px'}}><i className='fa fa-bath fa-2x fa-fw'></i>&nbsp;{post.bath}</li>
             <li style={{display:'inline-block'}}><i className='fa fa-car fa-2x fa-fw'></i>&nbsp;{post.carpark}</li>
         </ul>
-        <hr />
         </CSSTransitionGroup>
+        <hr />
           <h4 style={{textAlign:'center'}}>${post.price}{" per week"}</h4>
 
         <p className='well' style={{textAlign:'center'}}>{post.description}</p>
@@ -60,7 +63,8 @@ class PostDetail extends Component{
 
 const stateToProps = (state, ownProps)=>{
   return{
-    post: state.post.list[ownProps.match.params.id]
+    post: state.post.list[ownProps.match.params.id],
+    account: state.account
   }
 }
 
