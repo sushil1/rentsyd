@@ -82,7 +82,7 @@ class Post extends Component{
             </td>
             <td>
               <div className='thumbnail'>
-                <img style={{height:180, width:200}} src={list[key]['image']}></img>
+                <img className='img-responsive' style={{height:180, width:200, paddingRight:'5px'}} src={list[key]['image']}></img>
               </div>
               <div className='caption'>
                 <span className="label label-default">{list[key]['profile']['name']}</span>

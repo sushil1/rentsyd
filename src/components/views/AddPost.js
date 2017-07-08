@@ -139,46 +139,50 @@ class AddPost extends Component{
     const {handleSubmit} = this.props
     return(
       <div className='container'>
-      <form style={{paddingTop:'70px'}}  onSubmit={handleSubmit(this.submitForm.bind(this))}>
+        <div className='row' style={{paddingTop:'70px'}}>
+          <h3 style={{textAlign:'center'}}>Add a rental property</h3>
+          <div className='col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
+            <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
 
-        <FormSection name='address' required>
-          <Field name='street' label='Street' element='input' type='text'
-          component={this.renderInput}
-          />
-          <Field name='suburb' label='Suburb' element='input' type='text'
-          component={this.renderInput}
-          />
-          <Field name='postcode' label='Postcode' element='input' type='text'
-            component={this.renderInput}
-            />
-        </FormSection>
+              <FormSection name='address' required>
+                <Field name='street' label='Street' element='input' type='text'
+                component={this.renderInput}
+                />
+                <Field name='suburb' label='Suburb' element='input' type='text'
+                component={this.renderInput}
+                />
+                <Field name='postcode' label='Postcode' element='input' type='text'
+                  component={this.renderInput}
+                  />
+              </FormSection>
 
-        <Field name='description' label='Write a description' element='textarea' type='text'
-          component={this.renderInput}
-          />
-        <Field name='price' label='Price per week' element='input' type='text'
-          component={this.renderInput}
-          />
-        <Field name='beds' label='Number of bedrooms' element='input' type='number' min='1' max='6'
-          component={this.renderInput}
-          />
-        <Field name='bath' label='Number of bathrooms' element='input' type='number' min='1' max='5'
-            component={this.renderInput}
-            />
-        <Field name='carpark' label='Number of carpark' element='input' type='number' min='0' max='3'
-              component={this.renderInput}
-              />
-        <Field name='image' label='Upload a image'
-          component={this.renderDropzone}
-          />
+              <Field name='description' label='Write a description' element='textarea' type='text'
+                component={this.renderInput}
+                />
+              <Field name='price' label='Price per week' element='input' type='text'
+                component={this.renderInput}
+                />
+              <Field name='beds' label='Number of bedrooms' element='input' type='number' min='1' max='6'
+                component={this.renderInput}
+                />
+              <Field name='bath' label='Number of bathrooms' element='input' type='number' min='1' max='5'
+                  component={this.renderInput}
+                  />
+              <Field name='carpark' label='Number of carpark' element='input' type='number' min='0' max='3'
+                    component={this.renderInput}
+                    />
+              <Field name='image' label='Upload a image'
+                component={this.renderDropzone}
+                />
 
-          <br />
-        <button className='btn btn-success' type='submit'>{this.state.status}</button>
-        {"  "}
-        <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
-      </form>
-
-    </div>
+                <br />
+              <button className='btn btn-success' type='submit'>{this.state.status}</button>
+              {"  "}
+              <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
+            </form>
+          </div>
+        </div>
+      </div>
 
     )
 

@@ -32,25 +32,33 @@ class SignUp extends Component{
   render(){
     const {handleSubmit} = this.props
     return(
-      <form style={{paddingTop:'70px'}} className='col-md-6 col-sm-6 col-xs-12 col-lg-6' onSubmit={handleSubmit(this.submit.bind(this))}>
-        <Field
-        label='Name'
-        name='name' type='text'
-        component={this.renderField}
-         />
-        <Field
-          label='Email' type='email'
-          name='email' component={this.renderField}
-           />
-        <Field
-          label='Password' type='password'
-          name='password' component={this.renderField}
-          />
-        <br />
-        <button className='btn btn-primary"' type='submit' onClick={this.submit.bind(this)}>SignUp</button>
-        {'  '}
-        <Link className='btn btn-danger' to='/'>Cancel</Link>
-      </form>
+      <div className='container'>
+        <div style={{paddingTop:'70px'}} className='row'>
+          <div className='col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
+            <form onSubmit={handleSubmit(this.submit.bind(this))}>
+              <Field
+              label='Name'
+              name='name' type='text'
+              component={this.renderField}
+               />
+              <Field
+                label='Email' type='email'
+                name='email' component={this.renderField}
+                 />
+              <Field
+                label='Password' type='password'
+                name='password' component={this.renderField}
+                />
+              <br />
+              <div className='text-center'>
+                <button className='btn btn-primary' type='submit' onClick={this.submit.bind(this)}>SignUp</button>
+                {'  '}
+                <Link className='btn btn-danger' to='/'>Cancel</Link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }
