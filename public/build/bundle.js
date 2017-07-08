@@ -21465,7 +21465,7 @@ var Post = function (_Component) {
             null,
             _react2.default.createElement(
               'div',
-              { style: { height: 200, width: 250 } },
+              { style: { height: 200, width: 250, display: 'block' } },
               _react2.default.createElement('img', { className: 'img-responsive', style: { height: '100%', width: '100%' }, src: list[key]['image'] })
             ),
             _react2.default.createElement(
@@ -21629,36 +21629,45 @@ var AddPost = function (_Component) {
   _createClass(AddPost, [{
     key: 'submitForm',
     value: function submitForm(values) {
-      var _this2 = this;
+      console.log(values
+      // values['profile'] = this.props.account.currentUser
+      //
+      // const address = values['address']
+      // const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
+      //
+      //
+      // this.getGeocode(formattedAddress, (res)=>{
+      //    return values['geo'] = [res.lat, res.lng]
+      //
+      // })
+      //
+      // this.setState({
+      //   status: 'Uploading'
+      // })
+      //
+      // this.uploadImage(values['image'], (res)=>{
+      //   values['image'] = res
+      //
+      //   this.setState({
+      //     status: 'Submitting'
+      //   })
+      //
+      //
+      //   return this.props.addNewPost(values, ()=>{
+      //
+      //
+      //     this.setState({
+      //       status: 'Done'
+      //     })
+      //     return this.props.history.push('/')
+      //
+      //   })
+      //
+      //
+      //
+      // })
 
-      values['profile'] = this.props.account.currentUser;
-
-      var address = values['address'];
-      var formattedAddress = address.street + ", " + address.suburb + ", " + address.postcode;
-
-      this.getGeocode(formattedAddress, function (res) {
-        return values['geo'] = [res.lat, res.lng];
-      });
-
-      this.setState({
-        status: 'Uploading'
-      });
-
-      this.uploadImage(values['image'], function (res) {
-        values['image'] = res;
-
-        _this2.setState({
-          status: 'Submitting'
-        });
-
-        return _this2.props.addNewPost(values, function () {
-
-          _this2.setState({
-            status: 'Done'
-          });
-          return _this2.props.history.push('/');
-        });
-      });
+      );
     }
   }, {
     key: 'getGeocode',
@@ -21707,16 +21716,17 @@ var AddPost = function (_Component) {
         null,
         _react2.default.createElement(
           _reactDropzone2.default,
-          {
+          { style: { border: 'none' },
             name: field.name,
             onDrop: function onDrop(filesToUpload, e) {
               return field.input.onChange(filesToUpload);
             }
           },
           _react2.default.createElement(
-            'strong',
-            null,
-            'Click to Upload'
+            'button',
+            { className: 'btn btn-success btn-lg' },
+            _react2.default.createElement('i', { className: 'fa fa-cloud-upload' }),
+            '\xA0Upload Image'
           )
         ),
         field.meta.touched && field.meta.error && _react2.default.createElement(
@@ -21725,12 +21735,14 @@ var AddPost = function (_Component) {
           field.meta.error
         ),
         files && Array.isArray(files) && _react2.default.createElement(
-          'ul',
-          { className: 'list-group' },
+          'div',
+          { className: 'button-group', style: { paddingTop: '10px' } },
           files.map(function (file, i) {
             return _react2.default.createElement(
-              'li',
-              { className: 'list-group-item', key: i },
+              'button',
+              { className: 'btn btn-info', key: i },
+              _react2.default.createElement('i', { className: 'fa fa-picture-o' }),
+              '\xA0',
               file.name
             );
           })
@@ -21749,7 +21761,59 @@ var AddPost = function (_Component) {
           field.label
         ),
         _react2.default.createElement('br', null),
-        _react2.default.createElement(field.element, _extends({ className: 'form-control', name: field.name, type: field.type }, field.input, { min: field.min, max: field.max })),
+        _react2.default.createElement(field.element, _extends({ className: field.inputClass, name: field.name, type: field.type }, field.input, { placeholder: field.placeholder, min: field.min, max: field.max })),
+        field.meta.touched && field.meta.error && _react2.default.createElement(
+          'span',
+          { className: 'has-error text-danger' },
+          field.meta.error
+        )
+      );
+    }
+  }, {
+    key: 'renderSelect',
+    value: function renderSelect(field) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'input-group margin-left-sm' },
+        _react2.default.createElement(
+          'span',
+          { className: 'input-group-addon' },
+          _react2.default.createElement('i', { className: field.itemIconName })
+        ),
+        _react2.default.createElement(
+          'select',
+          _extends({ className: 'form-control', name: field.name }, field.input),
+          _react2.default.createElement(
+            'option',
+            null,
+            field.label
+          ),
+          _react2.default.createElement(
+            'option',
+            null,
+            '0'
+          ),
+          _react2.default.createElement(
+            'option',
+            null,
+            '1'
+          ),
+          _react2.default.createElement(
+            'option',
+            null,
+            '2'
+          ),
+          _react2.default.createElement(
+            'option',
+            null,
+            '3'
+          ),
+          _react2.default.createElement(
+            'option',
+            null,
+            '4'
+          )
+        ),
         field.meta.touched && field.meta.error && _react2.default.createElement(
           'span',
           { className: 'has-error text-danger' },
@@ -21775,58 +21839,98 @@ var AddPost = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12' },
+            { style: { paddingTop: '20px' } },
             _react2.default.createElement(
               'form',
               { onSubmit: handleSubmit(this.submitForm.bind(this)) },
               _react2.default.createElement(
+                'h4',
+                null,
+                'Address:'
+              ),
+              _react2.default.createElement(
                 _reduxForm.FormSection,
-                { name: 'address', required: true },
+                { className: 'form-inline', name: 'address', required: true },
                 _react2.default.createElement(_reduxForm.Field, { name: 'street', label: 'Street', element: 'input', type: 'text',
+                  placeholder: '40 Streetname St',
+                  inputClass: 'form-control',
                   component: this.renderInput
                 }),
                 _react2.default.createElement(_reduxForm.Field, { name: 'suburb', label: 'Suburb', element: 'input', type: 'text',
+                  placeholder: 'North Ryde',
+                  inputClass: 'form-control',
                   component: this.renderInput
                 }),
                 _react2.default.createElement(_reduxForm.Field, { name: 'postcode', label: 'Postcode', element: 'input', type: 'text',
+                  inputClass: 'form-control',
                   component: this.renderInput
                 })
               ),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement(
+                'h4',
+                null,
+                'Features:'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-inline' },
+                _react2.default.createElement(_reduxForm.Field, { name: 'beds', label: 'Beds',
+                  itemIconName: 'fa fa-bed fa-fw',
+                  component: this.renderSelect
+                }),
+                _react2.default.createElement(_reduxForm.Field, { name: 'bath', label: 'Baths',
+                  itemIconName: 'fa fa-bath fa-fw',
+                  component: this.renderSelect
+                }),
+                _react2.default.createElement(_reduxForm.Field, { name: 'carpark', label: 'Carpark',
+                  itemIconName: 'fa fa-car fa-fw',
+                  component: this.renderSelect
+                })
+              ),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement(_reduxForm.Field, { name: 'price', element: 'input', type: 'text',
+                label: 'Price',
+                inputClass: 'col-xs-4',
+                placeholder: 'Price per week',
+                component: this.renderInput
+              }),
+              _react2.default.createElement('br', null),
               _react2.default.createElement(_reduxForm.Field, { name: 'description', label: 'Write a description', element: 'textarea', type: 'text',
+                inputClass: 'form-control',
+                placeholder: 'Write something about your property',
                 component: this.renderInput
               }),
-              _react2.default.createElement(_reduxForm.Field, { name: 'price', label: 'Price per week', element: 'input', type: 'text',
-                component: this.renderInput
-              }),
-              _react2.default.createElement(_reduxForm.Field, { name: 'beds', label: 'Number of bedrooms', element: 'input', type: 'number', min: '1', max: '6',
-                component: this.renderInput
-              }),
-              _react2.default.createElement(_reduxForm.Field, { name: 'bath', label: 'Number of bathrooms', element: 'input', type: 'number', min: '1', max: '5',
-                component: this.renderInput
-              }),
-              _react2.default.createElement(_reduxForm.Field, { name: 'carpark', label: 'Number of carpark', element: 'input', type: 'number', min: '0', max: '3',
-                component: this.renderInput
-              }),
+              _react2.default.createElement('br', null),
               _react2.default.createElement(_reduxForm.Field, { name: 'image', label: 'Upload a image',
                 component: this.renderDropzone
               }),
               _react2.default.createElement('br', null),
               _react2.default.createElement(
-                'button',
-                { className: 'btn btn-success', type: 'submit' },
-                this.state.status
-              ),
-              "  ",
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: '/' },
+                'div',
+                { className: 'text-center' },
                 _react2.default.createElement(
                   'button',
-                  { className: 'btn btn-danger' },
-                  'Cancel'
+                  { className: 'btn btn-primary', type: 'submit' },
+                  _react2.default.createElement('i', { className: 'fa fa-paper-plane' }),
+                  '\xA0',
+                  this.state.status
+                ),
+                "  ",
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/' },
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-danger' },
+                    'Cancel'
+                  )
                 )
               )
-            )
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
           )
         )
       );
@@ -21842,13 +21946,13 @@ function validate(values) {
   if (!values.price) {
     errors.price = 'Enter price';
   }
-  if (!values.beds) {
+  if (!values.beds || values.beds == 'Beds') {
     errors.beds = 'Enter beds';
   }
-  if (!values.bath) {
+  if (!values.bath || values.bath == 'Baths') {
     errors.bath = 'Enter bath';
   }
-  if (!values.carpark) {
+  if (!values.carpark || values.carpark == 'Carpark') {
     errors.carpark = 'Enter carpark';
   }
   if (!values.description) {

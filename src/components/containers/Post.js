@@ -81,7 +81,7 @@ class Post extends Component{
               </div>
             </td>
             <td>
-              <div style={{height:200, width:250}}>
+              <div style={{height:200, width:250, display:'block'}}>
                 <img className='img-responsive' style={{height:'100%', width:'100%'}} src={list[key]['image']}></img>
               </div>
               <div className='caption'>

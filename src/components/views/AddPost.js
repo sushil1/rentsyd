@@ -16,42 +16,43 @@ class AddPost extends Component{
   }
 
   submitForm(values){
-    values['profile'] = this.props.account.currentUser
-
-    const address = values['address']
-    const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
-
-
-    this.getGeocode(formattedAddress, (res)=>{
-       return values['geo'] = [res.lat, res.lng]
-
-    })
-
-    this.setState({
-      status: 'Uploading'
-    })
-
-    this.uploadImage(values['image'], (res)=>{
-      values['image'] = res
-
-      this.setState({
-        status: 'Submitting'
-      })
-
-
-      return this.props.addNewPost(values, ()=>{
-
-
-        this.setState({
-          status: 'Done'
-        })
-        return this.props.history.push('/')
-
-      })
-
-
-
-    })
+    console.log(values)
+    // values['profile'] = this.props.account.currentUser
+    //
+    // const address = values['address']
+    // const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
+    //
+    //
+    // this.getGeocode(formattedAddress, (res)=>{
+    //    return values['geo'] = [res.lat, res.lng]
+    //
+    // })
+    //
+    // this.setState({
+    //   status: 'Uploading'
+    // })
+    //
+    // this.uploadImage(values['image'], (res)=>{
+    //   values['image'] = res
+    //
+    //   this.setState({
+    //     status: 'Submitting'
+    //   })
+    //
+    //
+    //   return this.props.addNewPost(values, ()=>{
+    //
+    //
+    //     this.setState({
+    //       status: 'Done'
+    //     })
+    //     return this.props.history.push('/')
+    //
+    //   })
+    //
+    //
+    //
+    // })
 
   }
 
@@ -103,18 +104,18 @@ class AddPost extends Component{
     const files = field.input.value
     return(
       <div>
-        <Dropzone
+        <Dropzone style={{border:'none'}}
         name={field.name}
         onDrop={( filesToUpload, e ) => field.input.onChange(filesToUpload)}
-        ><strong>Click to Upload</strong>
+        ><button className='btn btn-success btn-lg'><i className='fa fa-cloud-upload'></i>&nbsp;Upload Image</button>
         </Dropzone>
         {field.meta.touched &&
           field.meta.error &&
           <span className="has-error text-danger">{field.meta.error}</span>}
         {files && Array.isArray(files) && (
-          <ul className='list-group'>
-            { files.map((file, i) => <li className='list-group-item' key={i}>{file.name}</li>) }
-          </ul>
+          <div className='button-group' style={{paddingTop:'10px'}}>
+            { files.map((file, i) => <button className='btn btn-info' key={i}><i className='fa fa-picture-o'></i>&nbsp;{file.name}</button>) }
+          </div>
         )}
 
       </div>
@@ -126,10 +127,27 @@ class AddPost extends Component{
       <div className='form-group'>
         <label>{field.label}</label>
         <br />
-        <field.element className='form-control' name={field.name} type={field.type} {...field.input} min={field.min} max={field.max}/>
+        <field.element className={field.inputClass} name={field.name} type={field.type} {...field.input} placeholder={field.placeholder} min={field.min} max={field.max}/>
 
         {field.meta.touched && field.meta.error && <span className='has-error text-danger'>{field.meta.error}</span>}
 
+      </div>
+    )
+  }
+
+  renderSelect(field){
+    return(
+      <div className='input-group margin-left-sm'>
+        <span className='input-group-addon'><i className={field.itemIconName}></i></span>
+        <select className='form-control' name={field.name} {...field.input}>
+          <option>{field.label}</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+        {field.meta.touched && field.meta.error && <span className='has-error text-danger'>{field.meta.error}</span>}
       </div>
     )
   }
@@ -141,45 +159,75 @@ class AddPost extends Component{
       <div className='container'>
         <div className='row' style={{paddingTop:'70px'}}>
           <h3 style={{textAlign:'center'}}>Add a rental property</h3>
-          <div className='col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
+          <div style={{paddingTop:'20px'}}>
             <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
-
-              <FormSection name='address' required>
+              <h4>Address:</h4>
+              <FormSection className='form-inline' name='address' required>
                 <Field name='street' label='Street' element='input' type='text'
+                placeholder='40 Streetname St'
+                inputClass='form-control'
                 component={this.renderInput}
                 />
                 <Field name='suburb' label='Suburb' element='input' type='text'
+                placeholder='North Ryde'
+                inputClass='form-control'
                 component={this.renderInput}
                 />
                 <Field name='postcode' label='Postcode' element='input' type='text'
+                inputClass='form-control'
                   component={this.renderInput}
                   />
               </FormSection>
+              <br />
 
-              <Field name='description' label='Write a description' element='textarea' type='text'
-                component={this.renderInput}
-                />
-              <Field name='price' label='Price per week' element='input' type='text'
-                component={this.renderInput}
-                />
-              <Field name='beds' label='Number of bedrooms' element='input' type='number' min='1' max='6'
-                component={this.renderInput}
-                />
-              <Field name='bath' label='Number of bathrooms' element='input' type='number' min='1' max='5'
+              <h4>Features:</h4>
+              <div className='form-inline'>
+
+                <Field name='beds' label='Beds'
+                  itemIconName='fa fa-bed fa-fw'
+                  component={this.renderSelect}
+                  />
+                <Field name='bath' label='Baths'
+                  itemIconName='fa fa-bath fa-fw'
+                  component={this.renderSelect}
+                  />
+                <Field name='carpark' label='Carpark'
+                  itemIconName='fa fa-car fa-fw'
+                  component={this.renderSelect}
+                  />
+              </div>
+
+              <br />
+
+                <Field name='price' element='input' type='text'
+                label='Price'
+                inputClass='col-xs-4'
+                placeholder='Price per week'
                   component={this.renderInput}
                   />
-              <Field name='carpark' label='Number of carpark' element='input' type='number' min='0' max='3'
-                    component={this.renderInput}
-                    />
+
+              <br />
+              <Field name='description' label='Write a description' element='textarea' type='text'
+              inputClass='form-control'
+              placeholder='Write something about your property'
+                component={this.renderInput}
+                />
+
+              <br />
               <Field name='image' label='Upload a image'
                 component={this.renderDropzone}
                 />
 
                 <br />
-              <button className='btn btn-success' type='submit'>{this.state.status}</button>
-              {"  "}
-              <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
+              <div className='text-center'>
+                <button className='btn btn-primary' type='submit'><i className='fa fa-paper-plane'></i>&nbsp;{this.state.status}</button>
+                {"  "}
+                <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
+              </div>
             </form>
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </div>
@@ -196,13 +244,13 @@ class AddPost extends Component{
     if(!values.price){
       errors.price = 'Enter price'
     }
-    if(!values.beds){
+    if(!values.beds || values.beds == 'Beds'){
       errors.beds = 'Enter beds'
     }
-    if(!values.bath){
+    if(!values.bath || values.bath == 'Baths'){
       errors.bath = 'Enter bath'
     }
-    if(!values.carpark){
+    if(!values.carpark || values.carpark == 'Carpark'){
       errors.carpark = 'Enter carpark'
     }
     if(!values.description){
