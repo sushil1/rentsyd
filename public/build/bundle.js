@@ -21465,8 +21465,8 @@ var Post = function (_Component) {
             null,
             _react2.default.createElement(
               'div',
-              { className: 'thumbnail' },
-              _react2.default.createElement('img', { className: 'img-responsive', style: { height: 180, width: 200, paddingRight: '5px' }, src: list[key]['image'] })
+              { style: { height: 200, width: 250 } },
+              _react2.default.createElement('img', { className: 'img-responsive', style: { height: '100%', width: '100%' }, src: list[key]['image'] })
             ),
             _react2.default.createElement(
               'div',
