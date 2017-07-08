@@ -21839,7 +21839,7 @@ var AddPost = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { style: { paddingTop: '20px' } },
+            { style: { paddingTop: '20px' }, className: 'col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1' },
             _react2.default.createElement(
               'form',
               { onSubmit: handleSubmit(this.submitForm.bind(this)) },

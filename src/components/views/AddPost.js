@@ -159,7 +159,7 @@ class AddPost extends Component{
       <div className='container'>
         <div className='row' style={{paddingTop:'70px'}}>
           <h3 style={{textAlign:'center'}}>Add a rental property</h3>
-          <div style={{paddingTop:'20px'}}>
+          <div style={{paddingTop:'20px'}} className='col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
               <h4>Address:</h4>
               <FormSection className='form-inline' name='address' required>
