@@ -21629,45 +21629,36 @@ var AddPost = function (_Component) {
   _createClass(AddPost, [{
     key: 'submitForm',
     value: function submitForm(values) {
-      console.log(values
-      // values['profile'] = this.props.account.currentUser
-      //
-      // const address = values['address']
-      // const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
-      //
-      //
-      // this.getGeocode(formattedAddress, (res)=>{
-      //    return values['geo'] = [res.lat, res.lng]
-      //
-      // })
-      //
-      // this.setState({
-      //   status: 'Uploading'
-      // })
-      //
-      // this.uploadImage(values['image'], (res)=>{
-      //   values['image'] = res
-      //
-      //   this.setState({
-      //     status: 'Submitting'
-      //   })
-      //
-      //
-      //   return this.props.addNewPost(values, ()=>{
-      //
-      //
-      //     this.setState({
-      //       status: 'Done'
-      //     })
-      //     return this.props.history.push('/')
-      //
-      //   })
-      //
-      //
-      //
-      // })
+      var _this2 = this;
 
-      );
+      values['profile'] = this.props.account.currentUser;
+
+      var address = values['address'];
+      var formattedAddress = address.street + ", " + address.suburb + ", " + address.postcode;
+
+      this.getGeocode(formattedAddress, function (res) {
+        return values['geo'] = [res.lat, res.lng];
+      });
+
+      this.setState({
+        status: 'Uploading'
+      });
+
+      this.uploadImage(values['image'], function (res) {
+        values['image'] = res;
+
+        _this2.setState({
+          status: 'Submitting'
+        });
+
+        return _this2.props.addNewPost(values, function () {
+
+          _this2.setState({
+            status: 'Done'
+          });
+          return _this2.props.history.push('/');
+        });
+      });
     }
   }, {
     key: 'getGeocode',

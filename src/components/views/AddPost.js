@@ -16,43 +16,42 @@ class AddPost extends Component{
   }
 
   submitForm(values){
-    console.log(values)
-    // values['profile'] = this.props.account.currentUser
-    //
-    // const address = values['address']
-    // const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
-    //
-    //
-    // this.getGeocode(formattedAddress, (res)=>{
-    //    return values['geo'] = [res.lat, res.lng]
-    //
-    // })
-    //
-    // this.setState({
-    //   status: 'Uploading'
-    // })
-    //
-    // this.uploadImage(values['image'], (res)=>{
-    //   values['image'] = res
-    //
-    //   this.setState({
-    //     status: 'Submitting'
-    //   })
-    //
-    //
-    //   return this.props.addNewPost(values, ()=>{
-    //
-    //
-    //     this.setState({
-    //       status: 'Done'
-    //     })
-    //     return this.props.history.push('/')
-    //
-    //   })
-    //
-    //
-    //
-    // })
+    values['profile'] = this.props.account.currentUser
+
+    const address = values['address']
+    const formattedAddress = address.street+", "+address.suburb+", "+address.postcode
+
+
+    this.getGeocode(formattedAddress, (res)=>{
+       return values['geo'] = [res.lat, res.lng]
+
+    })
+
+    this.setState({
+      status: 'Uploading'
+    })
+
+    this.uploadImage(values['image'], (res)=>{
+      values['image'] = res
+
+      this.setState({
+        status: 'Submitting'
+      })
+
+
+      return this.props.addNewPost(values, ()=>{
+
+
+        this.setState({
+          status: 'Done'
+        })
+        return this.props.history.push('/')
+
+      })
+
+
+
+    })
 
   }
 
