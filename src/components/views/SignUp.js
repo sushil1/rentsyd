@@ -51,9 +51,13 @@ class SignUp extends Component{
                 />
               <br />
               <div className='text-center'>
-                <button className='btn btn-primary' type='submit' onClick={this.submit.bind(this)}>SignUp</button>
+                <button className='btn btn-primary' type='submit' onClick={this.submit.bind(this)}>
+                <i className='fa fa-sign-in fa-fw'></i>&nbsp;
+                SignUp</button>
                 {'  '}
-                <Link className='btn btn-danger' to='/'>Cancel</Link>
+                <Link className='btn btn-danger' to='/'>
+                  <i className='fa fa-times fa-fw'></i>&nbsp;
+                Cancel</Link>
               </div>
             </form>
           </div>

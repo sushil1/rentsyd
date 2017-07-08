@@ -21914,7 +21914,8 @@ var AddPost = function (_Component) {
                   _react2.default.createElement(
                     'button',
                     { className: 'btn btn-danger' },
-                    'Cancel'
+                    _react2.default.createElement('i', { className: 'fa fa-times fa-fw' }),
+                    '\xA0 Cancel'
                   )
                 )
               )
@@ -22088,13 +22089,15 @@ var Login = function (_Component) {
                 _react2.default.createElement(
                   'button',
                   { className: 'btn btn-primary', type: 'submit', onClick: this.submit.bind(this) },
-                  'Login'
+                  _react2.default.createElement('i', { className: 'fa fa-sign-in fa-fw' }),
+                  '\xA0 Login'
                 ),
                 '  ',
                 _react2.default.createElement(
                   _reactRouterDom.Link,
                   { className: 'btn btn-danger', to: '/' },
-                  'Cancel'
+                  _react2.default.createElement('i', { className: 'fa fa-times fa-fw' }),
+                  '\xA0 Cancel'
                 )
               )
             )
@@ -22399,7 +22402,8 @@ var NavBar = function (_Component) {
             _react2.default.createElement(
               _reactRouterDom.Link,
               { to: '/signup' },
-              'SignUp'
+              _react2.default.createElement('i', { className: 'fa fa-user-plus fa-fw' }),
+              '\xA0 SignUp'
             )
           ),
           _react2.default.createElement(
@@ -22408,48 +22412,68 @@ var NavBar = function (_Component) {
             _react2.default.createElement(
               _reactRouterDom.Link,
               { to: '/login' },
-              'Login'
+              _react2.default.createElement('i', { className: 'fa fa-sign-in fa-fw' }),
+              '\xA0Login'
             )
           )
         )
       ) : _react2.default.createElement(
         'li',
-        { className: 'nav-item dropdown', role: 'presentation' },
-        _react2.default.createElement(
-          'a',
-          { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
-          _react2.default.createElement('i', { className: 'fa fa-user-circle fa-2x' }),
-          '\xA0',
-          _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
-        ),
+        null,
         _react2.default.createElement(
           'ul',
-          { className: 'dropdown-menu' },
+          { className: 'nav nav-pills' },
           _react2.default.createElement(
             'li',
-            null,
-            _react2.default.createElement(
-              'a',
-              null,
-              currentuser.name
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
+            { className: 'nav-item', style: { paddingTop: '4px' } },
             _react2.default.createElement(
               _reactRouterDom.Link,
               { to: '/post/new' },
-              'Add a Post'
+              _react2.default.createElement('i', { className: 'fa fa-plus fa-lg fa-fw' })
             )
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'nav-item dropdown', role: 'presentation' },
             _react2.default.createElement(
               'a',
-              { onClick: this.submitLogout.bind(this) },
-              'Logout'
+              { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
+              _react2.default.createElement('i', { className: 'fa fa-user-circle fa-2x' }),
+              '\xA0',
+              _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'dropdown-menu' },
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  null,
+                  currentuser.name
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/post/new' },
+                  _react2.default.createElement('i', { className: 'fa fa-plus fa-fw' }),
+                  '\xA0Add a Post'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { onClick: this.submitLogout.bind(this) },
+                  _react2.default.createElement('i', { className: 'fa fa-sign-out fa-fw' }),
+                  '\xA0Logout'
+                )
+              )
             )
           )
         )
@@ -22541,7 +22565,7 @@ var NavBar = function (_Component) {
                 { className: 'collapse navbar-collapse', id: 'navbar-collapse-1' },
                 _react2.default.createElement(
                   'ul',
-                  { className: 'nav navbar-right', style: { paddingRight: '30px' } },
+                  { className: 'nav navbar-right' },
                   displayUser
                 ),
                 _react2.default.createElement(
@@ -22764,7 +22788,8 @@ var PostDetail = function (_Component) {
             className: 'btn btn-danger pull-right',
             onClick: this.onDelete.bind(this),
             style: { marginLeft: '30px' } },
-          'Delete'
+          _react2.default.createElement('i', { className: 'fa fa-times fa-fw' }),
+          '\xA0 Delete'
         ),
         _react2.default.createElement(
           'h3',
@@ -22970,13 +22995,15 @@ var SignUp = function (_Component) {
                 _react2.default.createElement(
                   'button',
                   { className: 'btn btn-primary', type: 'submit', onClick: this.submit.bind(this) },
-                  'SignUp'
+                  _react2.default.createElement('i', { className: 'fa fa-sign-in fa-fw' }),
+                  '\xA0 SignUp'
                 ),
                 '  ',
                 _react2.default.createElement(
                   _reactRouterDom.Link,
                   { className: 'btn btn-danger', to: '/' },
-                  'Cancel'
+                  _react2.default.createElement('i', { className: 'fa fa-times fa-fw' }),
+                  '\xA0 Cancel'
                 )
               )
             )

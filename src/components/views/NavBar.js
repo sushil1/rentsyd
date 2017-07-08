@@ -68,24 +68,35 @@ class NavBar extends Component{
       <li className='nav-item dropdown' role='presentation'>
         <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle-o fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
-          <li className='nav-item'><Link to='/signup'>SignUp</Link></li>
-          <li className='nav-item'><Link to='/login'>Login</Link></li>
+          <li className='nav-item'><Link to='/signup'>
+            <i className='fa fa-user-plus fa-fw'></i>&nbsp;
+          SignUp</Link></li>
+          <li className='nav-item'><Link to='/login'>
+          <i className='fa fa-sign-in fa-fw'></i>&nbsp;Login</Link></li>
           </ul>
       </li>
       )
        :
       (
+      <li>
+      <ul className='nav nav-pills'>
+        <li className='nav-item' style={{paddingTop:'4px'}}><Link to='/post/new'><i className='fa fa-plus fa-lg fa-fw'></i></Link></li>
+
       <li className='nav-item dropdown' role='presentation'>
         <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
           <li><a>{currentuser.name}</a></li>
           <li>
-            <Link to='/post/new'>Add a Post</Link>
+            <Link to='/post/new'><i className='fa fa-plus fa-fw'></i>&nbsp;Add a Post</Link>
           </li>
           <li>
-            <a onClick={this.submitLogout.bind(this)}>Logout</a>
+            <a onClick={this.submitLogout.bind(this)}><i className='fa fa-sign-out fa-fw'></i>&nbsp;Logout</a>
           </li>
         </ul>
+      </li>
+
+
+      </ul>
       </li>
       )
 
@@ -151,7 +162,7 @@ class NavBar extends Component{
 
             <div className="collapse navbar-collapse" id="navbar-collapse-1">
 
-            <ul className='nav navbar-right' style={{paddingRight:'30px'}}>
+            <ul className='nav navbar-right'>
                   {displayUser}
             </ul>
 

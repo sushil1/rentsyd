@@ -221,7 +221,9 @@ class AddPost extends Component{
               <div className='text-center'>
                 <button className='btn btn-primary' type='submit'><i className='fa fa-paper-plane'></i>&nbsp;{this.state.status}</button>
                 {"  "}
-                <Link to='/'><button className='btn btn-danger'>Cancel</button></Link>
+                <Link to='/'><button className='btn btn-danger'>
+                  <i className='fa fa-times fa-fw'></i>&nbsp;
+                Cancel</button></Link>
               </div>
             </form>
             <br />

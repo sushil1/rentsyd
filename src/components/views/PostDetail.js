@@ -34,7 +34,9 @@ class PostDetail extends Component{
         <button
           className='btn btn-danger pull-right'
           onClick={this.onDelete.bind(this)}
-          style={{marginLeft:'30px'}}>Delete</button>
+          style={{marginLeft:'30px'}}>
+            <i className='fa fa-times fa-fw'></i>&nbsp;
+          Delete</button>
       }
 
           <h3>{post.address.street}</h3>
