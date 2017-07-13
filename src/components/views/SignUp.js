@@ -13,6 +13,7 @@ class SignUp extends Component{
     })
   }
 
+
   renderField(field){
     const {meta: {touched, error}} = field
     const className=`form-group ${touched && error ? 'has-error' : ''}`
@@ -31,10 +32,14 @@ class SignUp extends Component{
 
   render(){
     const {handleSubmit} = this.props
+    const errors = this.props.account.errors
     return(
       <div className='container'>
         <div style={{paddingTop:'70px'}} className='row'>
           <div className='col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
+            <div className='help-block'>
+              {errors}
+            </div>
             <form onSubmit={handleSubmit(this.submit.bind(this))}>
               <Field
               label='Name'
@@ -83,6 +88,11 @@ const validate = values => {
   return errors
 }
 
+const stateToProps = (state) =>{
+  return {
+    account: state.account
+  }
+}
 
 const dispatchToProps = (dispatch)=>{
   return{
@@ -90,7 +100,7 @@ const dispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(null, dispatchToProps)(reduxForm({
+export default connect(stateToProps, dispatchToProps)(reduxForm({
   form: 'signupForm',
   validate
 })(SignUp))

@@ -12,7 +12,8 @@ class Post extends Component{
     super()
 
     this.state = {
-      showMap: true
+      showMap: true,
+      errors:''
     }
   }
 

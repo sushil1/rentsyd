@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import {connect} from 'react-redux'
 import actions from '../../actions'
 
@@ -65,29 +65,32 @@ class NavBar extends Component{
     const currentuser = this.props.account.currentUser
 
     const displayUser = (currentuser == null)? (
+      <ul className='nav nav-pills'>
+      <li className='nav-item' style={{paddingTop:'4px'}}><NavLink to='/post/new'><i className='fa fa-plus fa-lg fa-fw'></i></NavLink></li>
       <li className='nav-item dropdown' role='presentation'>
         <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle-o fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
-          <li className='nav-item'><Link to='/signup'>
+          <li className='nav-item'><NavLink to='/signup'>
             <i className='fa fa-user-plus fa-fw'></i>&nbsp;
-          SignUp</Link></li>
-          <li className='nav-item'><Link to='/login'>
-          <i className='fa fa-sign-in fa-fw'></i>&nbsp;Login</Link></li>
+          SignUp</NavLink></li>
+          <li className='nav-item'><NavLink to='/login'>
+          <i className='fa fa-sign-in fa-fw'></i>&nbsp;Login</NavLink></li>
           </ul>
       </li>
+      </ul>
       )
        :
       (
       <li>
       <ul className='nav nav-pills'>
-        <li className='nav-item' style={{paddingTop:'4px'}}><Link to='/post/new'><i className='fa fa-plus fa-lg fa-fw'></i></Link></li>
+        <li className='nav-item' style={{paddingTop:'4px'}}><NavLink to='/post/new'><i className='fa fa-plus fa-lg fa-fw'></i></NavLink></li>
 
       <li className='nav-item dropdown' role='presentation'>
         <a className="dropdown-toggle navbar-item" data-toggle='dropdown' style={{textDecoration:'none'}}><i className='fa fa-user-circle fa-2x'></i>&nbsp;<i className='fa fa-caret-down fa-lg'></i></a>
         <ul className='dropdown-menu'>
           <li><a>{currentuser.name}</a></li>
           <li>
-            <Link to='/post/new'><i className='fa fa-plus fa-fw'></i>&nbsp;Add a Post</Link>
+            <NavLink to='/post/new'><i className='fa fa-plus fa-fw'></i>&nbsp;Add a Post</NavLink>
           </li>
           <li>
             <a onClick={this.submitLogout.bind(this)}><i className='fa fa-sign-out fa-fw'></i>&nbsp;Logout</a>
@@ -157,7 +160,7 @@ class NavBar extends Component{
                <span className="icon-bar"></span>
                <span className="icon-bar"></span>
              </button>
-             <Link to='/' className='navbar-brand'><strong>rentSyd</strong></Link>
+             <NavLink exact to='/' className='navbar-brand'><strong>rentSyd</strong></NavLink>
           </div>
 
             <div className="collapse navbar-collapse" id="navbar-collapse-1">
@@ -176,7 +179,7 @@ class NavBar extends Component{
               <div className="input-group margin-left-sm">
                 <span className="input-group-addon"><i className="fa fa-bed fa-fw"></i></span>
                 <select id='beds' onChange={this.updateField.bind(this)} className="form-control">
-                  <option>Beds</option>
+                  <option disabled>Beds</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -187,7 +190,7 @@ class NavBar extends Component{
               <div className="input-group margin-left-sm">
                 <span className="input-group-addon"><i className="fa fa-bath fa-fw"></i></span>
                 <select id='bath' onChange={this.updateField.bind(this)} className="form-control">
-                  <option>Bath</option>
+                  <option disabled>Bath</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>

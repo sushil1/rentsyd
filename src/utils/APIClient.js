@@ -3,7 +3,7 @@ import Promise from 'bluebird'
 
 //lets queue the GET requests
 
-//svar queue = []
+//var queue = []
 
 
 

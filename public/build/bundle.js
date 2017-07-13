@@ -21362,7 +21362,8 @@ var Post = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).call(this));
 
     _this.state = {
-      showMap: true
+      showMap: true,
+      errors: ''
     };
     return _this;
   }
@@ -22384,36 +22385,49 @@ var NavBar = function (_Component) {
       var currentuser = this.props.account.currentUser;
 
       var displayUser = currentuser == null ? _react2.default.createElement(
-        'li',
-        { className: 'nav-item dropdown', role: 'presentation' },
+        'ul',
+        { className: 'nav nav-pills' },
         _react2.default.createElement(
-          'a',
-          { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
-          _react2.default.createElement('i', { className: 'fa fa-user-circle-o fa-2x' }),
-          '\xA0',
-          _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
+          'li',
+          { className: 'nav-item', style: { paddingTop: '4px' } },
+          _react2.default.createElement(
+            _reactRouterDom.NavLink,
+            { to: '/post/new' },
+            _react2.default.createElement('i', { className: 'fa fa-plus fa-lg fa-fw' })
+          )
         ),
         _react2.default.createElement(
-          'ul',
-          { className: 'dropdown-menu' },
+          'li',
+          { className: 'nav-item dropdown', role: 'presentation' },
           _react2.default.createElement(
-            'li',
-            { className: 'nav-item' },
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/signup' },
-              _react2.default.createElement('i', { className: 'fa fa-user-plus fa-fw' }),
-              '\xA0 SignUp'
-            )
+            'a',
+            { className: 'dropdown-toggle navbar-item', 'data-toggle': 'dropdown', style: { textDecoration: 'none' } },
+            _react2.default.createElement('i', { className: 'fa fa-user-circle-o fa-2x' }),
+            '\xA0',
+            _react2.default.createElement('i', { className: 'fa fa-caret-down fa-lg' })
           ),
           _react2.default.createElement(
-            'li',
-            { className: 'nav-item' },
+            'ul',
+            { className: 'dropdown-menu' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/login' },
-              _react2.default.createElement('i', { className: 'fa fa-sign-in fa-fw' }),
-              '\xA0Login'
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/signup' },
+                _react2.default.createElement('i', { className: 'fa fa-user-plus fa-fw' }),
+                '\xA0 SignUp'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/login' },
+                _react2.default.createElement('i', { className: 'fa fa-sign-in fa-fw' }),
+                '\xA0Login'
+              )
             )
           )
         )
@@ -22427,7 +22441,7 @@ var NavBar = function (_Component) {
             'li',
             { className: 'nav-item', style: { paddingTop: '4px' } },
             _react2.default.createElement(
-              _reactRouterDom.Link,
+              _reactRouterDom.NavLink,
               { to: '/post/new' },
               _react2.default.createElement('i', { className: 'fa fa-plus fa-lg fa-fw' })
             )
@@ -22458,7 +22472,7 @@ var NavBar = function (_Component) {
                 'li',
                 null,
                 _react2.default.createElement(
-                  _reactRouterDom.Link,
+                  _reactRouterDom.NavLink,
                   { to: '/post/new' },
                   _react2.default.createElement('i', { className: 'fa fa-plus fa-fw' }),
                   '\xA0Add a Post'
@@ -22551,8 +22565,8 @@ var NavBar = function (_Component) {
                   _react2.default.createElement('span', { className: 'icon-bar' })
                 ),
                 _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/', className: 'navbar-brand' },
+                  _reactRouterDom.NavLink,
+                  { exact: true, to: '/', className: 'navbar-brand' },
                   _react2.default.createElement(
                     'strong',
                     null,
@@ -22594,7 +22608,7 @@ var NavBar = function (_Component) {
                       { id: 'beds', onChange: this.updateField.bind(this), className: 'form-control' },
                       _react2.default.createElement(
                         'option',
-                        null,
+                        { disabled: true },
                         'Beds'
                       ),
                       _react2.default.createElement(
@@ -22632,7 +22646,7 @@ var NavBar = function (_Component) {
                       { id: 'bath', onChange: this.updateField.bind(this), className: 'form-control' },
                       _react2.default.createElement(
                         'option',
-                        null,
+                        { disabled: true },
                         'Bath'
                       ),
                       _react2.default.createElement(
@@ -22963,6 +22977,7 @@ var SignUp = function (_Component) {
     value: function render() {
       var handleSubmit = this.props.handleSubmit;
 
+      var errors = this.props.account.errors;
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -22972,6 +22987,11 @@ var SignUp = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12' },
+            _react2.default.createElement(
+              'div',
+              { className: 'help-block' },
+              errors
+            ),
             _react2.default.createElement(
               'form',
               { onSubmit: handleSubmit(this.submit.bind(this)) },
@@ -23035,6 +23055,12 @@ var validate = function validate(values) {
   return errors;
 };
 
+var stateToProps = function stateToProps(state) {
+  return {
+    account: state.account
+  };
+};
+
 var dispatchToProps = function dispatchToProps(dispatch) {
   return {
     registerUser: function registerUser(params, callback) {
@@ -23043,7 +23069,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(null, dispatchToProps)((0, _reduxForm.reduxForm)({
+exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)((0, _reduxForm.reduxForm)({
   form: 'signupForm',
   validate: validate
 })(SignUp));
@@ -23226,7 +23252,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //lets queue the GET requests
 
-//svar queue = []
+//var queue = []
 
 
 exports.default = {

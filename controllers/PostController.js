@@ -54,16 +54,24 @@ module.exports = {
     delete params['bounds']
 
     if(params.suburb && params.beds && params.bath){
-    console.log('params from search here')
     var suburb = params.suburb
-    var beds = params.beds
-    var bath = params.bath
+    var beds = parseInt(params.beds - 1)
+    var bath = parseInt(params.bath - 1)
+
+
+    //params['$or'] = [ {beds: {$gt :beds} }, {bath: {$gt: bath} }]
     params['address.suburb'] = suburb
+    // params['beds'] = {$gt: beds}
+    // params['bath'] = {$gt: bath}
+
+    delete params['beds']
+    delete params['bath']
     delete params['suburb']
     delete params['geo']
   }
 
       Post.find(params, null, {limit:parseInt(limit), sort:{timestamp:sortOrder}}, function(err, posts){
+        console.log('params object: ', JSON.stringify(params))
         if(err) {
           reject(err)
           return

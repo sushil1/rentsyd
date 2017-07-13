@@ -6,13 +6,13 @@ var PostSchema = new mongoose.Schema({
   profile: {type:mongoose.Schema.Types.Mixed, default:{} },
   image: {type:String, default:'', trim:true},
   price: {type:String, default:'', trim:true},
-  beds: {type:String, default:'', trim:true},
-  bath: {type:String, default:'', trim:true},
+  beds: {type:Number, default:0},
+  bath: {type:Number, default:0},
   geo:{
     type:[Number],
     index: '2d'
   },
-  carpark: {type:String, default:'', trim:true},
+  carpark: {type:Number, default:0},
   description: {type:String, default:'', trim:true},
   address: {
     street: {type:String, default:''},
