@@ -9,7 +9,14 @@ class SignUp extends Component{
   submit(values){
 
     this.props.registerUser(values, ()=>{
-      return this.props.history.push('/')
+      this.props.addFlashMessage({
+        type:'success',
+        text: 'You have signed up successfully. Welcome!'
+      })
+      this.props.history.push('/')
+      setTimeout(()=>{
+        this.props.clearFlashMessages()
+      }, 5000)
     })
   }
 
@@ -32,14 +39,12 @@ class SignUp extends Component{
 
   render(){
     const {handleSubmit} = this.props
-    const errors = this.props.account.errors
+    const submissionError = this.props.account.errors
+    const showErr = (submissionError)? <span className='text-danger'>{submissionError}</span> : null
     return(
       <div className='container'>
         <div style={{paddingTop:'70px'}} className='row'>
           <div className='col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
-            <div className='help-block'>
-              {errors}
-            </div>
             <form onSubmit={handleSubmit(this.submit.bind(this))}>
               <Field
               label='Name'
@@ -50,6 +55,7 @@ class SignUp extends Component{
                 label='Email' type='email'
                 name='email' component={this.renderField}
                  />
+                 {showErr}
               <Field
                 label='Password' type='password'
                 name='password' component={this.renderField}
@@ -96,7 +102,9 @@ const stateToProps = (state) =>{
 
 const dispatchToProps = (dispatch)=>{
   return{
-    registerUser: (params, callback)=> dispatch(actions.registerUser(params, callback))
+    registerUser: (params, callback)=> dispatch(actions.registerUser(params, callback)),
+    addFlashMessage: (message) => dispatch(actions.addFlashMessage(message)),
+    clearFlashMessages: () => dispatch(actions.clearFlashMessages())
   }
 }
 

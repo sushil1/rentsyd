@@ -10,7 +10,14 @@ class Login extends Component{
   submit(values){
 
     this.props.loginUser(values, ()=>{
-      return this.props.history.push('/')
+      this.props.addFlashMessage({
+        type:'success',
+        text: 'You are logged in now. Welcome back!'
+      })
+      this.props.history.push('/')
+      setTimeout(()=>{
+        this.props.clearFlashMessages()
+      }, 5000)
     })
   }
 
@@ -81,7 +88,9 @@ const validate = values => {
 
 const dispatchToProps = (dispatch)=>{
   return{
-    loginUser: (params, callback)=> dispatch(actions.loginUser(params, callback))
+    loginUser: (params, callback)=> dispatch(actions.loginUser(params, callback)),
+    addFlashMessage: (message) => dispatch(actions.addFlashMessage(message)),
+    clearFlashMessages: () => dispatch(actions.clearFlashMessages())
   }
 }
 

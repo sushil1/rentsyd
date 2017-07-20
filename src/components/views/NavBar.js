@@ -44,7 +44,13 @@ class NavBar extends Component{
     event.preventDefault()
     var currentUser = this.props.account.currentUser
     this.props.logout(currentUser, ()=>{
-      this.props.history.push('/')
+      this.props.addFlashMessage({
+        type:'success',
+        text: 'You have logged out. See you again'
+      })
+      setTimeout(()=>{
+        this.props.clearFlashMessages()
+      }, 5000)
     })
   }
 
@@ -227,7 +233,9 @@ const dispatchToProps = (dispatch)=>{
   return{
     getCurrentUser: () => dispatch(actions.getCurrentUser()),
     searchPosts: (params)=> dispatch(actions.searchPosts(params)),
-    logout: (params, callback)=> dispatch(actions.logoutUser(params, callback))
+    logout: (params, callback)=> dispatch(actions.logoutUser(params, callback)),
+    addFlashMessage: (message) => dispatch(actions.addFlashMessage(message)),
+    clearFlashMessages: () => dispatch(actions.clearFlashMessages())
   }
 }
 

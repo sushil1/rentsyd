@@ -4,6 +4,7 @@ import PostDetail from './PostDetail'
 import AddPost from './AddPost'
 import Login from './Login'
 import Map from './Map'
+import FlashMessage from './FlashMessage'
 
 
 
@@ -16,6 +17,7 @@ export {
   PostDetail,
   AddPost,
   Login,
-  Map
+  Map,
+  FlashMessage
 
 }

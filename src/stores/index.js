@@ -1,6 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import {postReducer, accountReducer } from '../reducers'
+import {postReducer, accountReducer, flashReducer } from '../reducers'
 import {reducer as formReducer} from 'redux-form'
 
 var store;
@@ -11,7 +11,8 @@ export default {
     const reducers = combineReducers({
       form: formReducer,
       post: postReducer,
-      account: accountReducer
+      account: accountReducer,
+      flashMessages: flashReducer
     })
 
     store = createStore(

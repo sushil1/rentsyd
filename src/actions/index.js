@@ -9,7 +9,8 @@ export default {
 
       APIClient.get('/api/post', params)
       .then(response=>{
-        if(response.confirmation !== 'success'){
+        if(response.confirmation === 'fail'){
+
           reject( new Error('message: '+response.message))
           return
         }
@@ -46,7 +47,7 @@ export default {
     return (dispatch)=>{
       APIClient.get(`/api/post/${id}`)
       .then(response=>{
-        if(response.confirmation !== 'success'){
+        if(response.confirmation === 'fail'){
           throw new Error('message: '+response.message)
           return
         }
@@ -82,23 +83,30 @@ export default {
 
   },
 
-
   registerUser: (params, callback) => {
     return (dispatch)=>{
       APIClient.post('/account/signup', params)
       .then(response=>{
-        if(response.confirmation !== 'success'){
-          throw new Error('message: '+response.message)
-          return
+        if(response.confirmation === 'fail'){
+          return dispatch({
+            type: constants.USER_ACCOUNT_ERROR,
+            message: response.message
+          })
         }
-        return dispatch({
-          type: constants.CURRENT_USER_RECEIVED,
-          user: response.result
-        })
+        else if(response.confirmation === 'success'){
+
+          dispatch({
+            type: constants.CURRENT_USER_RECEIVED,
+            user: response.result
+          })
+          return callback()
+
+        }
 
       })
-      .then(() => callback())
-      .catch(err=> console.log(err))
+      .catch(err=> {
+        console.log('err', err)
+      })
     }
   },
 
@@ -157,7 +165,6 @@ export default {
       .catch(err=> console.log('Error: '+err))
     }
   },
-
   getCurrentUser: ()=>{
     return (dispatch)=>{
 
@@ -174,8 +181,27 @@ export default {
       })
       .catch(err=> console.log('Error: '+err))
     }
-  }
+  },
 
+  addFlashMessage: (message)=>{
+    return{
+      type: constants.ADD_FLASH_MESSAGE,
+      message
+    }
+  },
+
+  deleteFlashMessage: (id) => {
+    return{
+      type: constants.FLASH_MESSAGE_DELETED,
+      id
+    }
+  },
+
+  clearFlashMessages: () => {
+    return{
+      type: constants.CLEAR_FLASH_MESSAGES
+    }
+  }
 
 
 }

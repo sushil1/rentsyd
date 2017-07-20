@@ -45,11 +45,15 @@ class AddPost extends Component{
         this.setState({
           status: 'Done'
         })
-        return this.props.history.push('/')
-
+        this.props.addFlashMessage({
+          type:'success',
+          text: 'You have posted successfully!'
+        })
+        this.props.history.push('/')
+        setTimeout(()=>{
+          this.props.clearFlashMessages()
+        }, 5000)
       })
-
-
 
     })
 
@@ -275,7 +279,9 @@ class AddPost extends Component{
 
   const dispatchToProps = (dispatch)=>{
     return{
-      addNewPost: (params, callback)=> dispatch(actions.addNewPost(params, callback))
+      addNewPost: (params, callback)=> dispatch(actions.addNewPost(params, callback)),
+      addFlashMessage: (message) => dispatch(actions.addFlashMessage(message)),
+      clearFlashMessages: () => dispatch(actions.clearFlashMessages())
     }
   }
 

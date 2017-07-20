@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {Link } from 'react-router-dom'
 import MapNavigation from './MapNavigation'
 import Loader from 'react-loaders'
+import FlashMessagesList from './FlashMessagesList'
 
 class Post extends Component{
 
@@ -95,6 +96,7 @@ class Post extends Component{
 
     return(
       <div className='container' style={{paddingTop:'70px'}}>
+        <FlashMessagesList />
         <div className='row hidden-sm hidden-xs' style={{marginBottom:'0px'}}>
           <div className='btn-group col-md-6 col-offset-3' role='group'>
             <button type="button" className={mapButton}  onClick={this.toggleMap.bind(this)}><span className='glyphicon glyphicon-globe'></span>&nbsp;{(this.state.showMap)? 'Hide Map': 'Show Map'}</button>
@@ -103,6 +105,7 @@ class Post extends Component{
             </button>
           </div>
         </div>
+        {(resultsCount.length === 0)? (<div className='row' style={{paddingTop:20, marginLeft:20}}><span className='text-danger'>No post found! Drag the map to search around!</span></div>) : null}
         <div className='row'>
           <div className={postToggle}>
           <table className='table table-striped'>

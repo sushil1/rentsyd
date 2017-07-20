@@ -48,23 +48,23 @@ router.post('/signup', function(req, res, next){
   controllers.profile.get({email: email}, false)
   .then(profile=>{
     if(profile.length !== 0){
-      res.json({
+      return(res.json({
         confirmation:'fail',
         message:'email already registered'
       })
-      return
+    )
     }
       return controllers.profile.post(req.body, false)
         .then(profile=>{
-          var token = jwt.sign({id:profile.id}, process.env.JWT_TOKEN_SECRET, {expiresIn:4000})
+          var token = jwt.sign({id:profile.id}, process.env.JWT_TOKEN_SECRET)
           req.rentSyd.token = token
-          res.json({
+          return(res.json({
             confirmation:'success',
             result:profile,
             token:token
           })
+        )
         })
-
   })
   .catch(err=>{
     res.json({
