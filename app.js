@@ -1,77 +1,75 @@
-var express = require('express')
-var path = require('path')
-var favicon = require('serve-favicon')
-var logger = require('morgan')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var mongoose = require('mongoose')
-var session = require('client-sessions')
-var util = require('util')
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var session = require('client-sessions');
+var util = require('util');
 
-require('dotenv').config()
+require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URL, function(err, db){
-  if(err){
-    console.log('DB connection failed')
-    return
+mongoose.connect(process.env.MONGODB_URL, function(err, db) {
+  if (err) {
+    console.log('DB connection failed');
+    return;
   }
-  console.log('DB connection successful')
-})
+  console.log('DB connection successful');
+});
 
-var index = require('./routes/index')
-var api = require('./routes/api')
-var account = require('./routes/account')
-var geocode = require('./routes/geocode')
-var scrape = require('./routes/scrape')
+var index = require('./routes/index');
+var api = require('./routes/api');
+var account = require('./routes/account');
+var geocode = require('./routes/geocode');
 
-
-var app = express()
+var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'hjs')
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hjs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(session({
-  cookieName: 'rentSyd',
-  secret: process.env.SESSION_SECRET,
-  duration: 24*60*60*1000,
-  activeDuration: 30*60*1000
-}))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(
+  session({
+    cookieName: 'rentSyd',
+    secret: process.env.SESSION_SECRET,
+    duration: 24 * 60 * 60 * 1000,
+    activeDuration: 30 * 60 * 1000
+  })
+);
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
+app.use('/api', api);
+app.use('/account', account);
+app.use('/geocode', geocode);
 
-app.use('/', index)
-app.use('/api', api)
-app.use('/account', account)
-app.use('/geocode', geocode)
-app.use('/scrape', scrape)
-
-app.get('*', (req, res)=>{
-  res.render(path.resolve(__dirname, 'views/index.hjs'))
-})
+app.get('*', (req, res) => {
+  res.render(path.resolve(__dirname, 'views/index.hjs'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500)
-  res.render('error')
-})
+  res.status(err.status || 500);
+  res.render('error');
+});
 
-module.exports = app
+module.exports = app;

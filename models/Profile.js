@@ -1,24 +1,23 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
-var ProfileSchema = new mongoose.Schema({
+var ProfileSchema = new mongoose.Schema(
+  {
+    name: { type: String, default: '', trim: true },
+    email: { type: String, default: '', trim: true },
+    password: { type: String, default: '', trim: true }
+  },
+  { timestamps: true }
+);
 
-  name: {type:String, default:'', trim:true},
-  email: {type:String, default:'', trim:true},
-  password: {type:String, default:'', trim:true},
-  timestamp: {type:Date, default:Date.now()}
-
-})
-
-ProfileSchema.methods.summary = function(){
+ProfileSchema.methods.summary = function() {
   var summary = {
-        id: this._id.toString(),
-        name: this.name,
-        email: this.email,
-        timestamp: this.timestamp
-      }
+    id: this._id.toString(),
+    name: this.name,
+    email: this.email,
+    createdAt: this.createdAt
+  };
 
-    return summary
-}
+  return summary;
+};
 
-
-module.exports = mongoose.model('ProfileSchema', ProfileSchema)
+module.exports = mongoose.model('ProfileSchema', ProfileSchema);
